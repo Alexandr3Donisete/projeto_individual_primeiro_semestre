@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 
 * {
   margin: 0;
@@ -15,6 +15,8 @@ body {
   background-position: center;
   background-size: cover;
   font-size: 16px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 /* HEADER */
@@ -40,6 +42,10 @@ header a {
   color: #800080;
 }
 
+header .container .title {
+  font-size: 3rem;
+}
+
 .title {
   font-weight: 400;
   color: #ffffff;
@@ -50,7 +56,7 @@ header a {
   flex-direction: row;
   list-style: none;
   gap: 50px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
 }
 
@@ -73,7 +79,7 @@ header a {
   border: solid 3px #6e56b0;
   border-radius: 25px;
   width: 20%;
-  height: 30%;
+  height: 40%;
   background-color: #6e56b0a4;
   gap: 10px;
 }
@@ -87,14 +93,38 @@ header a {
   border: solid 2px white;
   border-radius: 25px;
   padding: 10px;
-  gap: 5px;
   background-color: #6e56b041;
-  color: #FFFFFF;
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-family: "Bangers", system-ui;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+::-webkit-input-placeholder {
+  color: white;
+  font-family: "Bangers", system-ui;
+  font-size: 1.5rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  text-align: center;
 }
 
 .login-container button {
-  width: 50%;
+  width: 65%;
   height: 15%;
   border: none;
   border-radius: 25px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: solid 2px white;
+  cursor: pointer;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.login-container button:hover {
+  background-color: #6e56b0;
 }

@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Bangers", system-ui;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../assets/imgs/background-shinobu.jpg);
+  background-position: center;
+  background-size: cover;
+  font-size: 16px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+/* HEADER */
+
+header .container {
+  /* border: solid 2px red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  justify-self: center;
+  padding: 30px;
+}
+
+header a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+header a:hover {
+  text-decoration: none;
+  color: #800080;
+}
+
+.selected {
+  font-weight: 800;
+  color: #800080;
+}
+
+header .container .title {
+  font-size: 3rem;
+}
+
+.title {
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 50px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+/* REGISTER */

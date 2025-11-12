@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background-image: url(/assets/imgs/background-maki.jpg);
+  background-image: url(../assets/imgs/background-maki.jpg);
   background-position: center;
   background-size: cover;
   font-size: 16px;
@@ -35,6 +35,11 @@ header .container {
 header a {
   text-decoration: none;
   color: #ffffff;
+}
+
+header a:hover {
+  text-decoration: none;
+  color: #800080;
 }
 
 .selected {
@@ -78,8 +83,8 @@ header .container .title {
   align-items: center;
   border: solid 3px #6e56b0;
   border-radius: 25px;
-  width: 20%;
-  height: 40%;
+  width: 30%;
+  height: 45%;
   background-color: #6e56b0a4;
   gap: 10px;
 }
@@ -90,7 +95,7 @@ header .container .title {
 }
 
 .field {
-  border: solid 2px white;
+  border: solid 2px #ffffff;
   border-radius: 25px;
   padding: 10px;
   background-color: #6e56b041;
@@ -102,7 +107,7 @@ header .container .title {
 }
 
 ::-webkit-input-placeholder {
-  color: white;
+  color: #ffffff;
   font-family: "Bangers", system-ui;
   font-size: 1.5rem;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -111,16 +116,14 @@ header .container .title {
 }
 
 .login-container button {
-  width: 65%;
+  width: 43%;
   height: 15%;
-  border: none;
   border-radius: 25px;
-  font-family: inherit;
   font-size: 1.5rem;
-  background-color: transparent;
-  border: solid 2px white;
+  background-color: #800080;
+  border: solid 2px #ffffff;
   cursor: pointer;
-  color: white;
+  color: #ffffff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
 }

@@ -94,8 +94,8 @@ header .container .title {
   border: solid 3px #ffffff;
   display: flex;
   flex-direction: column;
-  height: 50%;
-  width: 30%;
+  height: 80%;
+  width: 50%;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -163,4 +163,3 @@ label {
   color: #ffffff;
   font-size: 2rem;
 }
-

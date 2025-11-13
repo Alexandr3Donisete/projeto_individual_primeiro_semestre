@@ -26,13 +26,23 @@ header .container {
   /* border: solid 2px red; */
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
   justify-self: center;
   padding: 15px 0px 15px 0px;
-  border-bottom: solid 4px #800080;
   background-color: #00000067;
+}
+
+header .content {
+  /* border: solid 2px red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 100%;
 }
 
 header a {
@@ -77,6 +87,7 @@ header .container .title {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .login-container {
@@ -84,7 +95,7 @@ header .container .title {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 3px #6e56b0;
+  border: solid 3px #ffffff;
   border-radius: 25px;
   width: 30%;
   height: 45%;
@@ -95,6 +106,7 @@ header .container .title {
 .login-container h1 {
   color: antiquewhite;
   font-weight: 400;
+  font-size: 3rem;
 }
 
 .field {
@@ -111,7 +123,6 @@ header .container .title {
 
 ::-webkit-input-placeholder {
   color: #ffffff;
-  font-family: "Bangers", system-ui;
   font-size: 1.5rem;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
@@ -133,4 +144,9 @@ header .container .title {
 
 .login-container button:hover {
   background-color: #6e56b0;
+}
+
+label {
+  color: #ffffff;
+  font-size: 2rem;
 }

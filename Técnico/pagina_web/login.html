@@ -11,18 +11,20 @@
     <!-- HEADER -->
     <header>
       <div class="container">
-        <h1 class="title">Animes e Psicologia</h1>
-        <ul class="navbar">
-          <li>
-            <a href="index.html">Home Page</a>
-          </li>
-          <li>
-            <a href="#" class="selected">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
+        <div class="content">
+          <h1 class="title">Animes e Psicologia</h1>
+          <ul class="navbar">
+            <li>
+              <a href="index.html">Home Page</a>
+            </li>
+            <li>
+              <a href="#" class="selected">Login</a>
+            </li>
+            <li>
+              <a href="cadastro.html">Cadastro</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
 
@@ -30,8 +32,20 @@
     <div class="login-session">
       <div class="login-container">
         <h1>Irasshaimase!!!</h1>
-        <input class="field" type="text" placeholder="E-mail" />
-        <input class="field" type="text" placeholder="Password" />
+        <label for="ipt_email">E-mail</label>
+        <input
+          id="ipt_email"
+          class="field"
+          type="text"
+          placeholder="電子メール"
+        />
+        <label for="ipt_password">Senha</label>
+        <input
+          id="ipt_password"
+          class="field"
+          type="text"
+          placeholder="パスワード"
+        />
         <button>Entrar!</button>
       </div>
     </div>

@@ -31,6 +31,7 @@ header .container {
   justify-self: center;
   padding: 15px 0px 15px 0px;
   background-color: #00000067;
+  backdrop-filter: blur(3px);
 }
 
 header .content {

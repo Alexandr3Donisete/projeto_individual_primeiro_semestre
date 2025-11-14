@@ -86,6 +86,7 @@ header .container .title {
 }
 
 .register-container {
+  backdrop-filter: blur(3px);
   background-color: rgba(137, 43, 226, 0.308);
   border-radius: 25px;
   border: solid 3px #ffffff;

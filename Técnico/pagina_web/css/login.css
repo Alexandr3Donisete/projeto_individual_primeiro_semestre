@@ -88,6 +88,7 @@ header .container .title {
 }
 
 .login-container {
+  backdrop-filter: blur(3px);
   display: flex;
   flex-direction: column;
   justify-content: center;

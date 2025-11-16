@@ -116,7 +116,7 @@ header .container .title {
   height: 100%;
 }
 
-/* ABOUT ME */
+/* SOBRE MIM , PSICOLOGIA e ANIMES*/
 .session-about {
   display: flex;
   flex-direction: column;
@@ -167,4 +167,9 @@ header .container .title {
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
   text-align: justify;
+}
+
+/* FOOTER */
+.main-footer {
+  
 }

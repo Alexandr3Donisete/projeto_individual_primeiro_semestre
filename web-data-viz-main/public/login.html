@@ -87,27 +87,21 @@
 
         if (resposta.ok) {
           console.log(resposta);
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.id;
 
-          setTimeout(function () {
-            window.location = "./index.html";
-          }, 1000); // apenas para exibir o loading
-
-          //   resposta.json().then((json) => {
-          //     console.log(json);
-          //     console.log(JSON.stringify(json));
-          //     sessionStorage.EMAIL_USUARIO = json.email;
-          //     sessionStorage.NOME_USUARIO = json.nome;
-          //     sessionStorage.ID_USUARIO = json.id;
-
-          //     setTimeout(function () {
-          //       window.location = "./index.html";
-          //     }, 1000); // apenas para exibir o loading
-          //   });
+            setTimeout(function () {
+              window.location = "./index.html";
+            }, 1000); // apenas para exibir o loading
+          });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
           cardErro.style.display = "block";
-          mensagem_erro.innerHTML =
-            "(Email ou Senha inválidos!)";
+          mensagem_erro.innerHTML = "(Email ou Senha inválidos!)";
 
           resposta.text().then((texto) => {
             console.error(texto);

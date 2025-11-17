@@ -118,17 +118,13 @@ header .container .title {
   background-color: #6e56b041;
   font-size: 1.5rem;
   color: #ffffff;
-  font-family: "Bangers", system-ui;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
 
 ::-webkit-input-placeholder {
   color: #ffffff;
   font-size: 1.5rem;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
   text-align: center;
 }
 
@@ -152,4 +148,26 @@ header .container .title {
 label {
   color: #ffffff;
   font-size: 2rem;
+}
+
+/* CARD ERROR */
+
+.card_erro {
+  display: none;
+  background-color: black;
+  color: white;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #ed145b 3px solid;
+  padding: 10px;
+  margin-left: 25%;
+  margin-top: 10%;
+  z-index: 1;
+}
+
+.card_erro #mensagem_erro {
+  font-weight: 500;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }

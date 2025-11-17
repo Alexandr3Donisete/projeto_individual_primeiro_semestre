@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animes e Psicologia</title>
+    <link rel="stylesheet" href="./css/login.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="container">
+        <div class="content">
+          <h1 class="title">Animes e Psicologia</h1>
+          <ul class="navbar">
+            <li>
+              <a href="index.html">Home Page</a>
+            </li>
+            <li>
+              <a href="#" class="selected">Login</a>
+            </li>
+            <li>
+              <a href="cadastro.html">Cadastro</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- LOGIN CARD -->
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
+    <div class="login-session">
+      <div class="login-container">
+        <h1>Irasshaimase!!!</h1>
+        <label for="email_input">E-mail</label>
+        <input
+          id="email_input"
+          class="field"
+          type="text"
+          placeholder="電子メール"
+        />
+        <label for="senha_input">Senha</label>
+        <input
+          id="senha_input"
+          class="field"
+          type="password"
+          placeholder="パスワード"
+        />
+        <button onclick="entrar()">Entrar!</button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function entrar() {
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+
+    if (emailVar == "" || senhaVar == "") {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          setTimeout(function () {
+            window.location = "./index.html";
+          }, 1000); // apenas para exibir o loading
+
+          //   resposta.json().then((json) => {
+          //     console.log(json);
+          //     console.log(JSON.stringify(json));
+          //     sessionStorage.EMAIL_USUARIO = json.email;
+          //     sessionStorage.NOME_USUARIO = json.nome;
+          //     sessionStorage.ID_USUARIO = json.id;
+
+          //     setTimeout(function () {
+          //       window.location = "./index.html";
+          //     }, 1000); // apenas para exibir o loading
+          //   });
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+          cardErro.style.display = "block";
+          mensagem_erro.innerHTML =
+            "(Email ou Senha inválidos!)";
+
+          resposta.text().then((texto) => {
+            console.error(texto);
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>

@@ -13,6 +13,7 @@
       <div class="container">
         <div class="content">
           <h1 class="title">Animes e Psicologia</h1>
+
           <ul class="navbar">
             <li>
               <a href="index.html">Home Page</a>
@@ -29,32 +30,40 @@
     </header>
 
     <!-- REGISTER CARD -->
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
     <div class="register-session">
       <div class="register-container">
         <h1 class="title">FAÇA SEU CADASTRO!!</h1>
         <div class="field-block">
           <div class="field-container">
-            <label for="ipt_name">Nome</label>
-            <input id="ipt_name" class="field" type="text" placeholder="名前" />
-            <label for="ipt_email">E-mail</label>
+            <label for="nome_input">Nome</label>
             <input
-              id="ipt_email"
+              id="nome_input"
+              class="field"
+              type="text"
+              placeholder="名前"
+            />
+            <label for="email_input">E-mail</label>
+            <input
+              id="email_input"
               class="field"
               type="text"
               placeholder="電子メール"
             />
           </div>
           <div class="field-container">
-            <label for="ipt_password">Senha</label>
+            <label for="senha_input">Senha</label>
             <input
-              id="ipt_password"
+              id="senha_input"
               class="field"
               type="password"
               placeholder="パスワード"
             />
-            <label for="ipt_confirm_password">Confirmar Senha</label>
+            <label for="confirmacao_senha_input">Confirmar Senha</label>
             <input
-              id="ipt_confirm_password"
+              id="confirmacao_senha_input"
               class="field"
               type="password"
               placeholder="パスワード"
@@ -62,8 +71,106 @@
           </div>
         </div>
 
-        <button onclick="validarCadastro()">Registrar</button>
+        <button onclick="cadastrar()">Registrar</button>
       </div>
     </div>
   </body>
 </html>
+
+<script>
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (nomeVar.length < 2) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Seu nome precisa ter mais de 2 caractéres!)";
+
+      finalizarAguardar();
+      return false;
+    } else if (!emailVar.includes("@")) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Digite um email válido!)";
+
+      finalizarAguardar();
+    } else if (senhaVar.length < 6) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Sua senha precisa ter mais de 6 caractéres!)";
+
+      finalizarAguardar();
+    } else if (senhaVar != confirmacaoSenhaVar) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Os campos senha e confirmar senha precisam coincidir)";
+
+      finalizarAguardar();
+    } else {
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o   valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            cardErro.style.display = "block";
+
+            mensagem_erro.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+    }
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>

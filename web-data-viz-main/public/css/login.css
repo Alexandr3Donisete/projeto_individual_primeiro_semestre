@@ -32,6 +32,7 @@ header .container {
   background-color: #00000067;
   backdrop-filter: blur(3px);
   position: fixed;
+  margin: 5%;
   border-radius: 25px;
   justify-self: center;
   margin-top: 10px;

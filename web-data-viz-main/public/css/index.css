@@ -32,6 +32,7 @@ header .container {
   background-color: #00000067;
   backdrop-filter: blur(3px);
   position: fixed;
+  margin: 5%;
   border-radius: 25px;
   justify-self: center;
   margin-top: 10px;
@@ -148,7 +149,7 @@ header .container .title {
 
 .content-image img {
   border-radius: 25px;
-  width: 65%;
+  width: 40%;
 }
 
 .content-image .title {
@@ -161,7 +162,7 @@ header .container .title {
   flex-wrap: wrap;
   width: 45%;
   height: 100%;
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: white;
   justify-content: center;
   align-items: center;
@@ -171,5 +172,4 @@ header .container .title {
 
 /* FOOTER */
 .main-footer {
-  
 }

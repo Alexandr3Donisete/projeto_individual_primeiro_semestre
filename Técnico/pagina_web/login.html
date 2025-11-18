@@ -89,7 +89,7 @@
           console.log(resposta);
 
           setTimeout(function () {
-            window.location = "./index.html";
+            window.location = "./teste-personalidade.html";
           }, 1000); // apenas para exibir o loading
 
           //   resposta.json().then((json) => {
@@ -106,8 +106,7 @@
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
           cardErro.style.display = "block";
-          mensagem_erro.innerHTML =
-            "(Email ou Senha inválidos!)";
+          mensagem_erro.innerHTML = "(Email ou Senha inválidos!)";
 
           resposta.text().then((texto) => {
             console.error(texto);

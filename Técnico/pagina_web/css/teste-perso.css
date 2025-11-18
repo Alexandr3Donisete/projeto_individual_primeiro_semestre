@@ -18,6 +18,7 @@ body {
     1px 1px 0 #000;
   background-color: aliceblue;
   overflow-x: hidden;
+  background-image: url(/assets/imgs/teste-maki.png);
 }
 
 /* HEADER */
@@ -31,7 +32,6 @@ header .container {
   padding: 15px 0px 15px 0px;
   background-color: #00000067;
   backdrop-filter: blur(3px);
-  position: fixed;
   border-radius: 25px;
   justify-self: center;
   margin-top: 10px;
@@ -79,92 +79,22 @@ header .container .title {
   font-weight: 400;
 }
 
-/* WELCOME */
-.banner-welcome {
+/* TESTE-TITLE */
+
+.test-title {
+  height: 40vh;
   display: flex;
-  width: 100vw;
-  height: 100vh;
-  background-image: url(../assets/imgs/banner-welcome.jpg);
-  background-position: left;
-  background-size: cover;
-  background-repeat: no-repeat;
-  justify-content: space-between;
-}
-
-.welcome-gif-1 {
-  width: 10%;
-  height: 30%;
-  align-self: flex-end;
-  margin-bottom: 80px;
-  margin-left: 50px;
-}
-
-.welcome-gif-1 img {
-  width: 100%;
-  height: 100%;
-}
-
-.welcome-gif-2 {
-  width: 10%;
-  height: 30%;
-  justify-self: flex-end;
-  margin-right: 50px;
-}
-
-.welcome-gif-2 img {
-  width: 100%;
-  height: 100%;
-}
-
-/* SOBRE MIM , PSICOLOGIA e ANIMES*/
-.session-about {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
   align-items: center;
-  background: linear-gradient(#def0f7, #8fcce6);
+  justify-content: center;
 }
 
-.session-about .title {
-  font-size: 6rem;
-  margin-top: 4.5rem;
-}
-
-.container-about {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-.content-image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.test-title .container {
+  height: 50%;
   width: 50%;
-  height: 100%;
-}
-
-.content-image img {
-  border-radius: 25px;
-  width: 65%;
-}
-
-.content-image .title {
-  font-size: 2rem;
-  color: white;
-}
-
-.content-text {
   display: flex;
-  flex-wrap: wrap;
-  width: 45%;
-  height: 100%;
-  font-size: 2rem;
-  color: white;
   justify-content: center;
   align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: justify;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
 }

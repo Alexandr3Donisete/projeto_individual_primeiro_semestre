@@ -39,14 +39,14 @@ header .container {
 header .title {
   font-family: "Bangers", sans-serif;
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
   letter-spacing: 1px;
 }
 
 .navbar {
   display: flex;
   list-style: none;
-  gap: 32px;
+  gap: 1rem;
 }
 
 .navbar a {
@@ -54,12 +54,11 @@ header .title {
   color: #ffffff;
   font-weight: 400;
   transition: 0.3s;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .navbar a:hover {
   color: #bb6bd9;
-  transform: translateY(-3px);
 }
 
 /* WELCOME */
@@ -91,7 +90,7 @@ header .title {
 .session-about {
   width: 100%;
   min-height: 100vh;
-  padding: 95px 0 60px;
+  padding: 0 0 60px;
   background: linear-gradient(#dcefff, #8fcce6);
   text-align: center;
 }
@@ -114,7 +113,6 @@ header .title {
 
 .content-image {
   width: 40%;
-  min-width: 280px;
 }
 
 .content-image img {
@@ -135,11 +133,9 @@ header .title {
 
 .content-text {
   width: 45%;
-  min-width: 280px;
   font-size: 1.3rem;
   color: #ffffff;
   text-align: justify;
-  line-height: 2;
 }
 
 /* FOOTER */

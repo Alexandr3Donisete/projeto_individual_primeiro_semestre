@@ -185,8 +185,6 @@ var campoNumeroTotal = document.getElementById("numTotal");
 var textoPergunta = document.getElementById("question-text");
 var campoOpcoes = document.getElementById("options-container");
 
-campoNumeroTotal.innerHTML = perguntas.length;
-
 //  FUNÇÃO: CARREGAR PERGUNTA
 
 function carregarPergunta() {
@@ -209,9 +207,7 @@ function carregarPergunta() {
 
 carregarPergunta();
 
-// ===========================
 //  FUNÇÃO: PRÓXIMA PERGUNTA
-// ===========================
 
 function proximaPergunta() {
   var selecionado = document.querySelector("input[name='pergunta']:checked");

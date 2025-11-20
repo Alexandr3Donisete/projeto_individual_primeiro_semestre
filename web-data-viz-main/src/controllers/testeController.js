@@ -12,6 +12,7 @@ function cadastrar(req, res) {
     console.log(req);
 
     var fkUsuario = req.body.fkUsuario;
+    var fkTeste = req.body.fkTeste;
     var resiliencia = req.body.resiliencia;
     var confianca = req.body.confianca;
     var estrategia = req.body.estrategia;
@@ -22,9 +23,11 @@ function cadastrar(req, res) {
       res.status(400).send("Usuário ou teste não recebido!");
       return;
     }
+    console.log("cadastrar - controller: "+ req);
 
     testeModel.cadastrar(
       fkUsuario,
+      fkTeste,
       resiliencia,
       confianca,
       estrategia,

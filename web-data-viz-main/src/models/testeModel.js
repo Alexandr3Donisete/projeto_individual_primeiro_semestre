@@ -2,30 +2,35 @@ var database = require("../database/config");
 
 function listar() {
   var instrucao = `
-        SELECT * FROM resultado_quiz;
+        SELECT * FROM resultado_quizz;
+    `;
+  return database.executar(instrucao);
+}
+
+function searchTestID() {
+  var instrucao = `
+        S 
     `;
   return database.executar(instrucao);
 }
 
 function cadastrar(
   fkUsuario,
+  fkTeste,
   resiliencia,
   confianca,
   estrategia,
   controleEmocional,
   impulsividade
 ) {
-  var instrucao2 = `INSERT INTO teste (nome) VALUES ("Gougaz")`;
-  var testeId = database.executar(instrucao2).then((value) => {
-    var instrucao = `
-        INSERT INTO resultado_quiz 
-        (fkUsuario, fkTeste, resiliencia, confianca, estrategia, controleEmocional, impulsividade)
-        VALUES (${fkUsuario}, ${value.insertId}, ${resiliencia}, ${confianca}, ${estrategia}, ${controleEmocional}, ${impulsividade});
+  var instrucao = `
+        INSERT INTO resultado_quizz
+        (fkUsuario, fkTeste,resiliencia, confianca, estrategia, controle_emocional, impulsividade)
+        VALUES (${fkUsuario}, ${fkTeste}, ${resiliencia}, ${confianca}, ${estrategia}, ${controleEmocional}, ${impulsividade});
     `;
 
-    console.log("Executando SQL: \n" + instrucao);
-    return database.executar(instrucao);
-  });
+  console.log("Executando SQL: \n" + instrucao);
+  return database.executar(instrucao);
 }
 
 module.exports = {

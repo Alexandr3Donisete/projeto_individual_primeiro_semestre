@@ -261,20 +261,39 @@ function mostrarResultado() {
     <h2 style="text-align:center;">Em breve: seu personagem correspondente!</h2>
   `;
 
+
   fetch("/teste/cadastrar", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: {
+    body: JSON.stringify({
       fkUsuario: sessionStorage.ID_USUARIO,
+      fkTeste: 1,
       resiliencia: total.resiliencia,
       confianca: total.confianca,
       estrategia: total.estrategia,
       controleEmocional: total.controle_emocional,
       impulsividade: total.impulsividade,
-    },
-  }).then(() => {
-      console.log("Resultado salvo:");
-      window.location = "./dashboard.html";
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: " + resposta);
+
+      console.log("ESTOU NO THEN DO entrar()!");
+      if (resposta.ok) {
+        resposta.json().then((json) => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+
+          setTimeout(function () {
+            window.location = "./dashboard.html";
+          }, 2000); // apenas para exibir o loading
+        });
+      } else {
+        console.log("Houve um erro ao persistir o resultado!");
+        resposta.text().then((texto) => {
+          console.error(texto);
+        });
+      }
     })
     .catch((err) => {
       console.error("Erro ao salvar resultado:", err);

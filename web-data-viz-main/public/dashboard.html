@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Perfil Psicológico Anime</title>
+
+    <link rel="stylesheet" href="./css/dashboard-anime.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <div class="janela">
+      <!-- MENU LATERAL -->
+      <aside class="menu">
+        <h1 class="logo">ANIPSI</h1>
+
+        <div class="usuario">
+          <p>Olá, <span id="nomeUsuario">Usuário</span>!</p>
+        </div>
+
+        <nav class="links">
+          <a class="ativo">Dashboard</a>
+          <a href="teste.html">Teste de Personalidade</a>
+          <a href="#" onclick="logout()">Sair</a>
+        </nav>
+      </aside>
+
+      <!-- ÁREA PRINCIPAL -->
+      <main class="conteudo">
+        <h1 class="titulo">Análise do Seu Perfil Psicológico</h1>
+
+        <!-- KPIS -->
+        <div class="kpis">
+          <div class="kpi">
+            <h3>Traço Dominante</h3>
+            <p id="kpiDominante">—</p>
+          </div>
+
+          <div class="kpi">
+            <h3>Compatibilidade Máxima</h3>
+            <p id="kpiCompatibilidade">—%</p>
+          </div>
+
+          <div class="kpi">
+            <h3>Média Geral Psicológica</h3>
+            <p id="kpiMedia">—</p>
+          </div>
+
+          <div class="kpi">
+            <h3>Top 3 Afinidades</h3>
+            <p id="kpiTop3">—</p>
+          </div>
+        </div>
+
+        <!-- GRÁFICOS -->
+        <section class="graficos">
+          <div class="grafico-box">
+            <h2>Perfil Psicológico (Radar)</h2>
+            <canvas id="graficoRadar"></canvas>
+          </div>
+
+          <div class="grafico-box">
+            <h2>Ranking de Compatibilidade com Personagens</h2>
+            <canvas id="graficoBarra"></canvas>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./js/dashboard-anime.js"></script>
+  </body>
+</html>
+
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  // Função chamada ao carregar a página para obter e processar os dados
+  function obterDados() {
+    // Aqui seria a função que obteria os dados do banco de dados
+    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+
+    fetch("/resultado/registrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idUsuario: sessionStorage.ID_USUARIO,
+        resiliencia: total.resiliencia,
+        confianca: total.confianca,
+        estrategia: total.estrategia,
+        controleEmocional: total.controle_emocional,
+        impulsividade: total.impulsividade,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log("Resultado salvo no banco!");
+        }
+      })
+      .catch((err) => console.error(err));
+
+    // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
+    var dados = [
+      {
+        jogador: "Endrick",
+        votos: 10,
+      },
+      {
+        jogador: "João",
+        votos: 5,
+      },
+      {
+        jogador: "Maria",
+        votos: 15,
+      },
+      {
+        jogador: "José",
+        votos: 20,
+      },
+      {
+        jogador: "Pedro",
+        votos: 25,
+      },
+      {
+        jogador: "Ana",
+        votos: 30,
+      },
+    ];
+
+    // // Chamando a função para plotar o gráfico de linha com os dados
+    // plotarGraficoLinha(dados);
+    // // Chamando a função para plotar o gráfico de barra com os dados
+    // plotarGraficoBarra(dados);
+
+    carregarDados(dados);
+  }
+
+  function carregarDados(dados) {
+    fetch(`/resultado/ultimo/${sessionStorage.ID_USUARIO}`)
+      .then((res) => res.json())
+      .then((dados) => {
+        atualizarKPIs(dados);
+        montarGraficoRadar(dados);
+        montarGraficoBarra(dados);
+      });
+  }
+
+  // Função para plotar o gráfico de linha
+  function plotarGraficoLinha(dados) {
+    // Separando os rótulos (labels) e os dados dos votos
+    var votos = [];
+    var jogadores = [];
+
+    // Preenchendo os arrays com os dados
+    for (var i = 0; i < dados.length; i++) {
+      votos.push(dados[i].votos);
+      jogadores.push(dados[i].jogador);
+    }
+
+    // Capturando o elemento canvas pelo id
+    var ctx = document.getElementById("linha").getContext("2d");
+    // Criando o gráfico de linha usando o Chart.js
+    var myChart = new Chart(ctx, {
+      type: "line", // Tipo de gráfico: linha
+      data: {
+        // Dados para o gráfico
+        labels: jogadores, // Rótulos no eixo X
+        datasets: [
+          {
+            label: "Votos", // Nome do conjunto de dados
+            data: votos, // Dados dos votos
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)", // Cor de fundo das linhas
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)", // Cor da borda das linhas
+            ],
+            borderWidth: 1, // Largura da borda das linhas
+          },
+        ],
+      },
+    });
+  }
+
+  // Função para plotar o gráfico de barra
+  function plotarGraficoBarra(dados) {
+    var votos = [];
+    var jogadores = [];
+
+    // Preenchendo os arrays com os dados
+    for (var i = 0; i < dados.length; i++) {
+      votos.push(dados[i].votos);
+      jogadores.push(dados[i].jogador);
+    }
+
+    // Capturando o elemento canvas pelo id
+    var ctx = document.getElementById("barra").getContext("2d");
+    // Criando o gráfico de barra usando o Chart.js
+    var myChart = new Chart(ctx, {
+      type: "bar", // Tipo de gráfico: barra
+      data: {
+        // Dados para o gráfico
+        labels: jogadores, // Rótulos no eixo X
+        datasets: [
+          {
+            label: "Votos", // Nome do conjunto de dados
+            data: votos, // Dados dos votos
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)", // Cor de fundo das barras
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)", // Cor da borda das barras
+            ],
+            borderWidth: 1, // Largura da borda das barras
+          },
+        ],
+      },
+    });
+  }
+</script>

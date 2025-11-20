@@ -4,33 +4,33 @@ var perguntas = [
     traco: "resiliencia",
     texto: "Quando algo dá errado nos seus planos, como você reage?",
     opcoes: [
-      "Respiro fundo e tento continuar.",
-      "Fico frustrado, mas sigo em frente.",
-      "Analiso o que deu errado para tentar melhorar.",
-      "Peço ajuda antes de continuar.",
       "Fico muito abalado e paro tudo.",
+      "Fico frustrado, mas sigo em frente.",
+      "Peço ajuda antes de continuar.",
+      "Respiro fundo e tento continuar.",
+      "Analiso o que deu errado para tentar melhorar.",
     ],
   },
   {
     traco: "resiliencia",
     texto: "Como você lida com obstáculos inesperados?",
     opcoes: [
-      "Me adapto rapidamente.",
-      "Encaro o problema direto.",
-      "Busco alternativas.",
-      "Procuro apoio externo.",
       "Fico perdido e demoro para reagir.",
+      "Procuro apoio externo.",
+      "Busco alternativas.",
+      "Encaro o problema direto.",
+      "Me adapto rapidamente.",
     ],
   },
   {
     traco: "resiliencia",
     texto: "Quando enfrenta uma grande dificuldade pessoal, você:",
     opcoes: [
+      "Age sem saber muito bem o que fazer.",
+      "Conversa com alguém de confiança.",
+      "Pensa em um plano.",
       "Mantém a calma e tenta resolver.",
       "Luta com força total.",
-      "Pensa em um plano.",
-      "Conversa com alguém de confiança.",
-      "Age sem saber muito bem o que fazer.",
     ],
   },
 
@@ -39,33 +39,33 @@ var perguntas = [
     traco: "confianca",
     texto: "Diante de um desafio que parece acima do seu nível, você:",
     opcoes: [
-      "Duvida de si mesmo, mas tenta.",
-      "Acredita que pode vencer.",
-      "Planeja antes de agir.",
       "Pede conselhos.",
+      "Duvida de si mesmo, mas tenta.",
+      "Planeja antes de agir.",
       "Parte para cima mesmo sem pensar.",
+      "Acredita que pode vencer.",
     ],
   },
   {
     traco: "confianca",
     texto: "Como você reage quando alguém subestima suas capacidades?",
     opcoes: [
-      "Fico quieto, mas provo meu valor.",
-      "Mostro confiança imediatamente.",
-      "Mostro resultados concretos.",
       "Ouço outras opiniões.",
+      "Fico quieto, mas provo meu valor.",
       "Sou impulsivo e bato de frente.",
+      "Mostro resultados concretos.",
+      "Mostro confiança imediatamente.",
     ],
   },
   {
     traco: "confianca",
     texto: "Quando precisa tomar uma decisão importante, você:",
     opcoes: [
-      "Pensa muito antes.",
-      "Decide com firmeza.",
-      "Analisa vários cenários.",
       "Conversa com outros.",
+      "Pensa muito antes.",
+      "Analisa vários cenários.",
       "Vai no instinto.",
+      "Decide com firmeza.",
     ],
   },
 
@@ -74,33 +74,33 @@ var perguntas = [
     traco: "estrategia",
     texto: "Como você encara problemas complexos?",
     opcoes: [
+      "Tento várias coisas na hora.",
+      "Pergunto opiniões externas.",
       "Divido em partes menores.",
       "Vejo o caminho direto para a solução.",
       "Faço um planejamento completo.",
-      "Pergunto opiniões externas.",
-      "Tento várias coisas na hora.",
     ],
   },
   {
     traco: "estrategia",
     texto: "Antes de agir em uma situação importante, você:",
     opcoes: [
-      "Pensa um pouco e vai.",
-      "Age rápido.",
-      "Cria um plano detalhado.",
-      "Compartilha a decisão.",
       "Improvisa no momento.",
+      "Age rápido.",
+      "Pensa um pouco e vai.",
+      "Compartilha a decisão.",
+      "Cria um plano detalhado.",
     ],
   },
   {
     traco: "estrategia",
     texto: "Quando está aprendendo algo novo, você:",
     opcoes: [
-      "Testa e ajusta.",
-      "Faz sem medo.",
-      "Estuda e entende o conceito.",
-      "Pergunta para outras pessoas.",
       "Vai tentando até acertar.",
+      "Faz sem medo.",
+      "Testa e ajusta.",
+      "Pergunta para outras pessoas.",
+      "Estuda e entende o conceito.",
     ],
   },
 
@@ -109,33 +109,33 @@ var perguntas = [
     traco: "controle_emocional",
     texto: "Quando está sob pressão, você:",
     opcoes: [
-      "Respira fundo e se controla.",
-      "Fica firme.",
-      "Tenta analisar racionalmente.",
-      "Busca apoio emocional.",
       "Se deixa levar pela emoção.",
+      "Busca apoio emocional.",
+      "Tenta analisar racionalmente.",
+      "Fica firme.",
+      "Respira fundo e se controla.",
     ],
   },
   {
     traco: "controle_emocional",
     texto: "Quando algo te magoa, você:",
     opcoes: [
-      "Tenta entender sem explodir.",
+      "Reage na hora.",
+      "Fala com alguém.",
       "Mantém a postura.",
       "Analisa por que se sentiu assim.",
-      "Fala com alguém.",
-      "Reage na hora.",
+      "Tenta entender sem explodir.",
     ],
   },
   {
     traco: "controle_emocional",
     texto: "Quando está irritado, você:",
     opcoes: [
+      "Explode facilmente.",
+      "Conversa para aliviar.",
       "Se afasta e respira.",
       "Tenta manter a compostura.",
       "Pensa antes de reagir.",
-      "Conversa para aliviar.",
-      "Explode facilmente.",
     ],
   },
 
@@ -144,10 +144,10 @@ var perguntas = [
     traco: "impulsividade",
     texto: "Você costuma agir:",
     opcoes: [
-      "Após pensar um pouco.",
       "Com firmeza e decisão.",
       "Depois de analisar tudo.",
       "Após conversar com alguém.",
+      "Após pensar um pouco.",
       "No impulso.",
     ],
   },
@@ -156,9 +156,9 @@ var perguntas = [
     texto: "Quando está muito animado com algo, você:",
     opcoes: [
       "Aguarda o momento certo.",
-      "Vai com tudo.",
       "Planeja antes.",
       "Comenta com os outros.",
+      "Vai com tudo.",
       "Age sem pensar.",
     ],
   },
@@ -167,9 +167,9 @@ var perguntas = [
     texto: "Em uma situação urgente, você:",
     opcoes: [
       "Mantém o controle.",
-      "Corre para resolver.",
-      "Planeja rápido.",
       "Pede apoio.",
+      "Planeja rápido.",
+      "Corre para resolver.",
       "Parte para ação imediatamente.",
     ],
   },
@@ -181,7 +181,6 @@ var indiceAtual = 0;
 var respostas = [];
 
 var campoNumeroAtual = document.getElementById("numAtual");
-var campoNumeroTotal = document.getElementById("numTotal");
 var textoPergunta = document.getElementById("question-text");
 var campoOpcoes = document.getElementById("options-container");
 
@@ -247,6 +246,8 @@ function mostrarResultado() {
     total[respostas[i].traco] += respostas[i].valor;
   }
 
+  console.log(respostas);
+
   document.querySelector(".test-box").innerHTML = `
     <h1 style="text-align:center; margin-bottom:20px;">Resultado Final</h1>
 
@@ -259,4 +260,23 @@ function mostrarResultado() {
     <br><br>
     <h2 style="text-align:center;">Em breve: seu personagem correspondente!</h2>
   `;
+
+  fetch("/teste/cadastrar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: {
+      fkUsuario: sessionStorage.ID_USUARIO,
+      resiliencia: total.resiliencia,
+      confianca: total.confianca,
+      estrategia: total.estrategia,
+      controleEmocional: total.controle_emocional,
+      impulsividade: total.impulsividade,
+    },
+  }).then(() => {
+      console.log("Resultado salvo:");
+      window.location = "./dashboard.html";
+    })
+    .catch((err) => {
+      console.error("Erro ao salvar resultado:", err);
+    });
 }

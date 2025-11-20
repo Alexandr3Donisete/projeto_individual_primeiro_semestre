@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0c0c0e;
+  font-family: "Bangers", system-ui;
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.janela {
+  display: flex;
+  height: 100vh;
+}
+
+/* MENU LATERAL */
+.menu {
+  width: 22%;
+  background-color: #1a1a1d;
+  padding: 30px;
+  border-right: 4px solid #b65df5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+.logo {
+  color: #b65df5;
+  text-align: center;
+  font-size: 2.3rem;
+}
+
+.usuario p {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size: 1.5rem;
+}
+
+.links a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.links .ativo {
+  color: #b65df5;
+  font-weight: bold;
+}
+
+/* ÁREA PRINCIPAL */
+.conteudo {
+  width: 78%;
+  padding: 40px;
+}
+
+.titulo {
+  font-size: 2.7rem;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #e09aff;
+}
+
+/* KPIS */
+.kpis {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.kpi {
+  width: 23%;
+  background-color: #232226;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #b65df5;
+}
+
+.kpi h3 {
+  font-size: 1.5rem;
+  color: #d6b6ff;
+  margin-bottom: 10px;
+}
+
+.kpi p {
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* GRÁFICOS */
+.graficos {
+  display: flex;
+  gap: 40px;
+}
+
+.grafico-box {
+  width: 50%;
+  background-color: #232226;
+  border-radius: 15px;
+  padding: 25px;
+  border: 2px solid #b65df5;
+}
+
+.grafico-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #e3b7ff;
+}
+
+canvas {
+  width: 100%;
+  height: 350px;
+}

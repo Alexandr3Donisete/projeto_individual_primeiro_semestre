@@ -26,5 +26,5 @@ CREATE TABLE resultado_quizz(
     CONSTRAINT resultadoTeste FOREIGN KEY (fkTeste) REFERENCES teste (id),
     CONSTRAINT pkComposta PRIMARY KEY (id, fkUsuario, fkTeste)
 );
-select * from resultado_quizz;
+SELECT id, resiliencia, confianca, estrategia, controle_emocional, impulsividade FROM resultado_quizz;
 INSERT INTO teste(nome) VALUES ('Teste Anime');

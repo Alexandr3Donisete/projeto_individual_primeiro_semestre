@@ -231,6 +231,10 @@ function proximaPergunta() {
   carregarPergunta();
 }
 
+function normalizar(valor) {
+  return Number(((valor / 15) * 100).toFixed(2));
+}
+
 //  FUNÇÃO: RESULTADO FINAL
 
 function mostrarResultado() {
@@ -246,21 +250,28 @@ function mostrarResultado() {
     total[respostas[i].traco] += respostas[i].valor;
   }
 
+  var final = {
+    resiliencia: normalizar(total.resiliencia),
+    confianca: normalizar(total.confianca),
+    estrategia: normalizar(total.estrategia),
+    controleEmocional: normalizar(total.controle_emocional),
+    impulsividade: normalizar(total.impulsividade),
+  };
+
   console.log(respostas);
 
   document.querySelector(".test-box").innerHTML = `
     <h1 style="text-align:center; margin-bottom:20px;">Resultado Final</h1>
 
-    <p style="font-size:1.6rem;">Resiliência: ${total.resiliencia}</p>
-    <p style="font-size:1.6rem;">Confiança: ${total.confianca}</p>
-    <p style="font-size:1.6rem;">Estratégia: ${total.estrategia}</p>
-    <p style="font-size:1.6rem;">Controle Emocional: ${total.controle_emocional}</p>
-    <p style="font-size:1.6rem;">Impulsividade: ${total.impulsividade}</p>
+    <p style="font-size:1.6rem;">Resiliência: ${Math.round(final.resiliencia)}</p>
+    <p style="font-size:1.6rem;">Confiança: ${Math.round(final.confianca)}</p>
+    <p style="font-size:1.6rem;">Estratégia: ${Math.round(final.estrategia)}</p>
+    <p style="font-size:1.6rem;">Controle Emocional: ${Math.round(final.controleEmocional)}</p>
+    <p style="font-size:1.6rem;">Impulsividade: ${Math.round(final.impulsividade)}</p>
 
     <br><br>
     <h2 style="text-align:center;">Em breve: seu personagem correspondente!</h2>
   `;
-
 
   fetch("/teste/cadastrar", {
     method: "POST",
@@ -268,11 +279,11 @@ function mostrarResultado() {
     body: JSON.stringify({
       fkUsuario: sessionStorage.ID_USUARIO,
       fkTeste: 1,
-      resiliencia: total.resiliencia,
-      confianca: total.confianca,
-      estrategia: total.estrategia,
-      controleEmocional: total.controle_emocional,
-      impulsividade: total.impulsividade,
+      resiliencia: Math.round(final.resiliencia),
+      confianca: Math.round(final.confianca),
+      estrategia: Math.round(final.estrategia),
+      controleEmocional: Math.round(final.controleEmocional),
+      impulsividade: Math.round(final.impulsividade),
     }),
   })
     .then(function (resposta) {
@@ -283,10 +294,6 @@ function mostrarResultado() {
         resposta.json().then((json) => {
           console.log(json);
           console.log(JSON.stringify(json));
-
-          setTimeout(function () {
-            window.location = "./dashboard.html";
-          }, 2000); // apenas para exibir o loading
         });
       } else {
         console.log("Houve um erro ao persistir o resultado!");

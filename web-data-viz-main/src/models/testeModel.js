@@ -2,15 +2,9 @@ var database = require("../database/config");
 
 function listar() {
   var instrucao = `
-        SELECT * FROM resultado_quizz;
+        SELECT id, resiliencia, confianca, estrategia, controle_emocional, impulsividade FROM resultado_quizz WHERE fkUsuario = 1 ORDER BY id DESC LIMIT 1;
     `;
-  return database.executar(instrucao);
-}
-
-function searchTestID() {
-  var instrucao = `
-        S 
-    `;
+  console.log(instrucao);
   return database.executar(instrucao);
 }
 

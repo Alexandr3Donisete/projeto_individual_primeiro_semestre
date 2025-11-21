@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="./css/dashboard-anime.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   </head>
 
   <body>
@@ -16,7 +17,7 @@
         <h1 class="logo">ANIPSI</h1>
 
         <div class="usuario">
-          <p>Olá, <span id="nomeUsuario">Usuário</span>!</p>
+          <p>Olá, <span id="b_usuario">Usuário</span>!</p>
         </div>
 
         <nav class="links">
@@ -67,155 +68,135 @@
         </section>
       </main>
     </div>
-
-    <script src="./js/dashboard-anime.js"></script>
   </body>
 </html>
 
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-  // Função chamada ao carregar a página para obter e processar os dados
-  function obterDados() {
-    // Aqui seria a função que obteria os dados do banco de dados
-    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
 
-    fetch("/resultado/registrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        idUsuario: sessionStorage.ID_USUARIO,
-        resiliencia: total.resiliencia,
-        confianca: total.confianca,
-        estrategia: total.estrategia,
-        controleEmocional: total.controle_emocional,
-        impulsividade: total.impulsividade,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          console.log("Resultado salvo no banco!");
-        }
-      })
-      .catch((err) => console.error(err));
+  // fetch("/teste/listar").then(async function (res) {
+  //   if (res.ok) {
+  //     var obj = await res.json();
+  //     console.log(obj);
+  //     montaRadar(obj);
+  //   } else {
+  //     console.log("Erro ao carregar gráfico.");
+  //   }
+  // });
 
-    // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
-    var dados = [
-      {
-        jogador: "Endrick",
-        votos: 10,
-      },
-      {
-        jogador: "João",
-        votos: 5,
-      },
-      {
-        jogador: "Maria",
-        votos: 15,
-      },
-      {
-        jogador: "José",
-        votos: 20,
-      },
-      {
-        jogador: "Pedro",
-        votos: 25,
-      },
-      {
-        jogador: "Ana",
-        votos: 30,
-      },
-    ];
-
-    // // Chamando a função para plotar o gráfico de linha com os dados
-    // plotarGraficoLinha(dados);
-    // // Chamando a função para plotar o gráfico de barra com os dados
-    // plotarGraficoBarra(dados);
-
-    carregarDados(dados);
-  }
-
-  function carregarDados(dados) {
-    fetch(`/resultado/ultimo/${sessionStorage.ID_USUARIO}`)
-      .then((res) => res.json())
-      .then((dados) => {
-        atualizarKPIs(dados);
-        montarGraficoRadar(dados);
-        montarGraficoBarra(dados);
+  fetch("/teste/listar").then(function (res) {
+    if (res.ok) {
+      res.json().then(function (response) {
+        console.log(`Dados recebidos: ${JSON.stringify(response)}`);
+        montaRadar(response);
       });
-  }
-
-  // Função para plotar o gráfico de linha
-  function plotarGraficoLinha(dados) {
-    // Separando os rótulos (labels) e os dados dos votos
-    var votos = [];
-    var jogadores = [];
-
-    // Preenchendo os arrays com os dados
-    for (var i = 0; i < dados.length; i++) {
-      votos.push(dados[i].votos);
-      jogadores.push(dados[i].jogador);
+    } else {
+      console.log("Erro ao carregar gráfico.");
     }
+  });
 
-    // Capturando o elemento canvas pelo id
-    var ctx = document.getElementById("linha").getContext("2d");
-    // Criando o gráfico de linha usando o Chart.js
-    var myChart = new Chart(ctx, {
-      type: "line", // Tipo de gráfico: linha
+  // KPIS ----------------------------------------
+  kpiDominante.innerHTML = "Controle Emocional";
+  kpiCompatibilidade.innerHTML = "82%";
+  kpiMedia.innerHTML = "12.6";
+  kpiTop3.innerHTML = "Maki, Shinobu, Megumi";
+
+  // GRÁFICO RADAR --------------------------------
+
+  function montaRadar(dados) {
+    var ctxRadar = document.getElementById("graficoRadar");
+
+    new Chart(ctxRadar, {
+      type: "radar",
       data: {
-        // Dados para o gráfico
-        labels: jogadores, // Rótulos no eixo X
+        labels: [
+          "Resiliência",
+          "Confiança",
+          "Estratégia",
+          "Controle Emocional",
+          "Impulsividade",
+        ],
         datasets: [
           {
-            label: "Votos", // Nome do conjunto de dados
-            data: votos, // Dados dos votos
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)", // Cor de fundo das linhas
+            label: "Meu Perfil",
+            data: [
+              dados[0].resiliencia,
+              dados[0].confianca,
+              dados[0].estrategia,
+              dados[0].controle_emocional,
+              dados[0].impulsividade,
             ],
-            borderColor: [
-              "rgba(255, 99, 132, 1)", // Cor da borda das linhas
-            ],
-            borderWidth: 1, // Largura da borda das linhas
+            borderColor: "#b65df5",
+            backgroundColor: "rgba(182, 93, 245, 0.25)",
+            borderWidth: 2,
+            pointBackgroundColor: "#ffffff",
+            pointBorderColor: "#b65df5",
+            pointRadius: 3,
           },
         ],
+      },
+      plugins: [ChartDataLabels],
+      options: {
+        scales: {
+          r: {
+            min: 0,
+            max: 100,
+            ticks: {
+              display: false,
+            },
+            grid: {
+              color: "rgba(255,255,255,0.1)",
+              lineWidth: 2,
+            },
+            pointLabels: {
+              color: "#fff",
+              font: {
+                size: 16,
+                family: "Bangers",
+              },
+            },
+          },
+        },
+
+        // POSICIONA OS VALORES NAS PONTAS
+        plugins: {
+          datalabels: {
+            color: "#FFF",
+            font: {
+              size: 25,
+              family: "Bangers",
+            },
+            formatter: function (value) {
+              return value;
+            },
+            align: "start",
+            offset: 8,
+          },
+        },
       },
     });
   }
 
-  // Função para plotar o gráfico de barra
-  function plotarGraficoBarra(dados) {
-    var votos = [];
-    var jogadores = [];
+  // BARRA — ranking de personagens --------------
+  var ctxBarra = document.getElementById("graficoBarra");
 
-    // Preenchendo os arrays com os dados
-    for (var i = 0; i < dados.length; i++) {
-      votos.push(dados[i].votos);
-      jogadores.push(dados[i].jogador);
-    }
-
-    // Capturando o elemento canvas pelo id
-    var ctx = document.getElementById("barra").getContext("2d");
-    // Criando o gráfico de barra usando o Chart.js
-    var myChart = new Chart(ctx, {
-      type: "bar", // Tipo de gráfico: barra
-      data: {
-        // Dados para o gráfico
-        labels: jogadores, // Rótulos no eixo X
-        datasets: [
-          {
-            label: "Votos", // Nome do conjunto de dados
-            data: votos, // Dados dos votos
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)", // Cor de fundo das barras
-            ],
-            borderColor: [
-              "rgba(255, 99, 132, 1)", // Cor da borda das barras
-            ],
-            borderWidth: 1, // Largura da borda das barras
-          },
-        ],
-      },
-    });
-  }
+  new Chart(ctxBarra, {
+    type: "bar",
+    data: {
+      labels: [
+        "Maki Zenin",
+        "Shinobu Kochou",
+        "Megumi Fushiguro",
+        "Tanjiro",
+        "Nobara Kugisaki",
+      ],
+      datasets: [
+        {
+          label: "Compatibilidade (%)",
+          data: [82, 78, 66, 59, 54],
+          backgroundColor: "#b65df5",
+        },
+      ],
+    },
+  });
 </script>

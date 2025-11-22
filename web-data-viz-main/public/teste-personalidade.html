@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teste de Personalidade</title>
-    <link rel="stylesheet" href="./css/teste-perso.css" />
-  </head>
 
-  <body>
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <div class="content">
-          <h1 class="title">Animes e Psicologia</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teste de Personalidade</title>
+  <link rel="stylesheet" href="./css/teste-perso.css" />
+</head>
 
-          <ul class="navbar">
-            <li><a href="./index.html">home Page</a></li>
-            <li><a href="./dashboard.html">Dashboard</a></li>
-            <li><a class="selected">Teste de Personalidade</a></li>
-          </ul>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="content">
+        <h1 class="title">Animes e Psicologia</h1>
+
+        <ul class="navbar">
+          <li><a href="./index.html">home Page</a></li>
+          <li><a href="./dashboard.html">Dashboard</a></li>
+          <li><a class="selected">Teste de Personalidade</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- TÍTULO -->
+  <section class="test-title">
+    <div class="container">
+      <h1>DESCUBRA QUAL PERSONAGEM DE ANIME MAIS COMBINA COM VOCÊ!</h1>
+    </div>
+  </section>
+
+  <!-- ÁREA DO TESTE -->
+  <section class="test-area">
+    <div class="test-box">
+      <!-- PROGRESSO -->
+      <p class="progress">Pergunta <span id="numAtual">1</span> de 15</p>
+
+      <!-- PERGUNTA ATUAL -->
+      <div id="question-container" class="question-card">
+        <h2 id="question-text" class="question-text"></h2>
+
+        <div id="options-container">
         </div>
       </div>
-    </header>
 
-    <!-- TÍTULO -->
-    <section class="test-title">
-      <div class="container">
-        <h1>DESCUBRA QUAL PERSONAGEM DE ANIME MAIS COMBINA COM VOCÊ!</h1>
-      </div>
-    </section>
+      <!-- BOTÃO -->
+      <button id="btnNext" class="btn-next" onclick="proximaPergunta()">
+        Próxima
+      </button>
+    </div>
+  </section>
 
-    <!-- ÁREA DO TESTE -->
-    <section class="test-area">
-      <div class="test-box">
-        <!-- PROGRESSO -->
-        <p class="progress">Pergunta <span id="numAtual">1</span> de 15</p>
+  <script src="./js/teste.js"></script>
+</body>
 
-        <!-- PERGUNTA ATUAL -->
-        <div id="question-container" class="question-card">
-          <h2 id="question-text" class="question-text"></h2>
-
-          <div id="options-container"></div>
-        </div>
-
-        <!-- BOTÃO -->
-        <button id="btnNext" class="btn-next" onclick="proximaPergunta()">
-          Próxima
-        </button>
-      </div>
-    </section>
-
-    <script src="./js/teste.js"></script>
-  </body>
 </html>

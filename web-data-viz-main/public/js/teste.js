@@ -1,3 +1,63 @@
+var personagens = [
+  // Jujutsu Kaisen
+  {
+    nome: "Maki Zenin",
+    resiliencia: 95,
+    confianca: 85,
+    estrategia: 78,
+    controle_emocional: 88,
+    impulsividade: 40,
+    img: "../assets/imgs/img-maki.webp",
+  },
+  {
+    nome: "Megumi Fushiguro",
+    resiliencia: 80,
+    confianca: 60,
+    estrategia: 88,
+    controle_emocional: 70,
+    impulsividade: 45,
+    img: "../assets/imgs/img-megumi.webp",
+  },
+  {
+    nome: "Nobara Kugisaki",
+    resiliencia: 75,
+    confianca: 88,
+    estrategia: 65,
+    controle_emocional: 50,
+    impulsividade: 80,
+    img: "../assets/imgs/img-nobara.webp",
+  },
+
+  // Kimetsu no Yaiba
+  {
+    nome: "Shinobu Kochou",
+    resiliencia: 90,
+    confianca: 82,
+    estrategia: 95,
+    controle_emocional: 92,
+    impulsividade: 20,
+    img: "../assets/imgs/shinobu.webp",
+  },
+  {
+    nome: "Tanjiro Kamado",
+    resiliencia: 85,
+    confianca: 90,
+    estrategia: 70,
+    controle_emocional: 95,
+    impulsividade: 25,
+    img: "../assets/imgs/tanjiro.webp",
+  },
+  {
+    nome: "Zenitsu Agatsuma",
+    resiliencia: 60,
+    confianca: 40,
+    estrategia: 55,
+    controle_emocional: 20,
+    impulsividade: 95,
+    img: "../assets/imgs/zenitsu.webp",
+  },
+];
+
 var perguntas = [
   // RESILIÊNCIA -----------------------------
   {
@@ -258,19 +318,35 @@ function mostrarResultado() {
     impulsividade: normalizar(total.impulsividade),
   };
 
+  var personagem = descobrirPersonagem(final);
+
   console.log(respostas);
 
   document.querySelector(".test-box").innerHTML = `
     <h1 style="text-align:center; margin-bottom:20px;">Resultado Final</h1>
 
-    <p style="font-size:1.6rem;">Resiliência: ${Math.round(final.resiliencia)}</p>
+    <p style="font-size:1.6rem;">Resiliência: ${Math.round(
+      final.resiliencia
+    )}</p>
     <p style="font-size:1.6rem;">Confiança: ${Math.round(final.confianca)}</p>
     <p style="font-size:1.6rem;">Estratégia: ${Math.round(final.estrategia)}</p>
-    <p style="font-size:1.6rem;">Controle Emocional: ${Math.round(final.controleEmocional)}</p>
-    <p style="font-size:1.6rem;">Impulsividade: ${Math.round(final.impulsividade)}</p>
+    <p style="font-size:1.6rem;">Controle Emocional: ${Math.round(
+      final.controleEmocional
+    )}</p>
+    <p style="font-size:1.6rem;">Impulsividade: ${Math.round(
+      final.impulsividade
+    )}</p>
 
     <br><br>
-    <h2 style="text-align:center;">Em breve: seu personagem correspondente!</h2>
+    <h2 style="text-align:center;">
+    Seu personagem correspondente é:
+    <br>
+    <strong style="font-size:2rem; color:#b65df5;">${personagem.nome}</strong>
+    <br><br>
+    <img src="${personagem.img}" alt="${
+    personagem.nome
+  }" style="width:240px; border-radius:20px;">
+  </h2>
   `;
 
   fetch("/teste/cadastrar", {
@@ -305,4 +381,42 @@ function mostrarResultado() {
     .catch((err) => {
       console.error("Erro ao salvar resultado:", err);
     });
+}
+
+function descobrirPersonagem(final) {
+  var media =
+    (final.resiliencia +
+      final.confianca +
+      final.estrategia +
+      final.controleEmocional +
+      final.impulsividade) /
+    5;
+
+  // 0–39 → Zenitsu
+  if (media < 40) {
+    return personagens[5];
+  }
+
+  // 40–59 → Nobara
+  if (media < 60) {
+    return personagens[2];
+  }
+
+  // 60–74 → Megumi
+  if (media < 75) {
+    return personagens[1];
+  }
+
+  // 75–84 → Tanjiro
+  if (media < 85) {
+    return personagens[4];
+  }
+
+  // 85–94 → Maki
+  if (media < 95) {
+    return personagens[0];
+  }
+
+  // 95–100 → Shinobu
+  return personagens[3];
 }

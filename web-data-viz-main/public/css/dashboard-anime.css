@@ -103,6 +103,7 @@ body {
   border-radius: 12px;
   text-align: center;
   border: 2px solid #b65df5;
+  height: fit-content;
 }
 
 .kpi h3 {

@@ -4,9 +4,9 @@ var personagens = [
     nome: "Maki Zenin",
     resiliencia: 95,
     confianca: 85,
-    estrategia: 78,
+    estrategia: 40,
     controle_emocional: 88,
-    impulsividade: 40,
+    impulsividade: 95,
     img: "../assets/imgs/img-maki.webp",
   },
   {
@@ -285,7 +285,6 @@ function proximaPergunta() {
 
   if (indiceAtual >= perguntas.length) {
     mostrarResultado();
-    return;
   }
 
   carregarPergunta();

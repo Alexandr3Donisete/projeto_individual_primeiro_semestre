@@ -1,8 +1,9 @@
 var testeModel = require("../models/testeModel");
 
 function listar(req, res) {
+  var idUsuario = req.params.idUsuario;
   testeModel
-    .listar()
+    .listar(idUsuario)
     .then((resultado) => res.status(200).json(resultado))
     .catch((erro) => res.status(500).json(erro.sqlMessage));
 }
@@ -23,7 +24,7 @@ function cadastrar(req, res) {
       res.status(400).send("Usuário ou teste não recebido!");
       return;
     }
-    console.log("cadastrar - controller: "+ req);
+    console.log("cadastrar - controller: " + req);
 
     testeModel.cadastrar(
       fkUsuario,

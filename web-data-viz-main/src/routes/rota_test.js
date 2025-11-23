@@ -7,7 +7,7 @@ router.post("/cadastrar", function (req, res) {
     testeController.cadastrar(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:idUsuario", function (req, res) {
     testeController.listar(req, res);
 });
 

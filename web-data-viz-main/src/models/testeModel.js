@@ -1,8 +1,8 @@
 var database = require("../database/config");
 
-function listar() {
+function listar(idUsuario) {
   var instrucao = `
-        SELECT id, resiliencia, confianca, estrategia, controle_emocional, impulsividade FROM resultado_quizz WHERE fkUsuario = 1 ORDER BY id DESC LIMIT 1;
+        SELECT id, resiliencia, confianca, estrategia, controle_emocional, impulsividade FROM resultado_quizz WHERE fkUsuario = ${idUsuario} ORDER BY id DESC LIMIT 2;
     `;
   console.log(instrucao);
   return database.executar(instrucao);

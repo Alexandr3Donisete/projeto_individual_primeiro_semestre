@@ -24,8 +24,12 @@
       <nav class="links">
         <a class="ativo">Dashboard</a>
         <a href="teste-personalidade.html">Teste de Personalidade</a>
-        <a href="#" onclick="logout()">Sair</a>
+        <a href="#" onclick="limparSessao()">Sair</a>
       </nav>
+
+      <div class="img_personagem">
+        <img id="img_personagem" src="" alt="">
+      </div>
     </aside>
 
     <!-- ÁREA PRINCIPAL -->
@@ -45,7 +49,7 @@
         </div>
 
         <div class="kpi">
-          <h3>Média de Balanceamento</h3>
+          <h3>Média dos seus Status</h3>
           <p id="kpiMedia">—</p>
         </div>
 
@@ -75,6 +79,11 @@
 
 </html>
 <script>
+
+  function limparSessao() {
+    sessionStorage.clear();
+    window.location = "../login.html";
+  }
   var personagens = [
     // Jujutsu Kaisen
     {
@@ -135,6 +144,7 @@
     },
   ];
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  var idUsuario = sessionStorage.ID_USUARIO;
 
   // fetch("/teste/listar").then(async function (res) {
   //   if (res.ok) {
@@ -146,7 +156,7 @@
   //   }
   // });
 
-  fetch("/teste/listar").then(function (res) {
+  fetch(`/teste/listar/${idUsuario}`).then(function (res) {
     if (res.ok) {
       res.json().then(function (response) {
         console.log(`Dados recebidos: ${JSON.stringify(response)}`);
@@ -256,6 +266,9 @@
       melhor1.nome + " (" + Math.round(comp1) + "%), " +
       melhor2.nome + " (" + Math.round(comp2) + "%), " +
       melhor3.nome + " (" + Math.round(comp3) + "%)";
+
+    img_personagem.src = `${melhor1.img}`;
+
 
 
     // BARRA — ranking de personagens --------------

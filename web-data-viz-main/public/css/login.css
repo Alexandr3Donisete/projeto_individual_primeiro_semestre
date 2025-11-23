@@ -112,6 +112,14 @@ header .container .title {
   font-size: 3rem;
 }
 
+.login-container a {
+  color: white;
+}
+
+.login-container a:hover {
+  color: #6e56b0a4;
+}
+
 .field {
   border: solid 2px #ffffff;
   border-radius: 25px;

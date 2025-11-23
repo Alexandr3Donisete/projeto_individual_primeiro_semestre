@@ -109,6 +109,14 @@ header .container .title {
   gap: 20px;
 }
 
+.register-container a {
+  color: white;
+}
+
+.register-container a:hover {
+  color: #6e56b0;
+}
+
 .register-container .title {
   font-size: 3rem;
 }

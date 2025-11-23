@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function listar(idUsuario) {
   var instrucao = `
-        SELECT id, resiliencia, confianca, estrategia, controle_emocional, impulsividade FROM resultado_quizz WHERE fkUsuario = ${idUsuario} ORDER BY id DESC LIMIT 2;
+        SELECT id, resiliencia, confianca, estrategia, controle_emocional, impulsividade FROM resultado_quizz WHERE fkUsuario = ${idUsuario} ORDER BY id DESC LIMIT 1;
     `;
   console.log(instrucao);
   return database.executar(instrucao);

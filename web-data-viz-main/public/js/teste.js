@@ -318,7 +318,7 @@ function mostrarResultado() {
     impulsividade: normalizar(total.impulsividade),
   };
 
-  var personagem = descobrirPersonagem(final);
+  var personagem = calcularCompatibilidade(final);
 
   console.log(respostas);
 
@@ -383,40 +383,37 @@ function mostrarResultado() {
     });
 }
 
-function descobrirPersonagem(final) {
-  var media =
-    (final.resiliencia +
-      final.confianca +
-      final.estrategia +
-      final.controleEmocional +
-      final.impulsividade) /
-    5;
+function calcularCompatibilidade(dadosUsuario) {
+  var usuario = {
+    resiliencia: dadosUsuario.resiliencia,
+    confianca: dadosUsuario.confianca,
+    estrategia: dadosUsuario.estrategia,
+    controle_emocional: dadosUsuario.controleEmocional,
+    impulsividade: dadosUsuario.impulsividade,
+  };
 
-  // 0–39 → Zenitsu
-  if (media < 40) {
-    return personagens[5];
+  var melhor = null;
+  var comp = 0;
+
+  for (var i = 0; i < personagens.length; i++) {
+    var p = personagens[i];
+    console.log(`${i + 1} p: " ${p.nome}`);
+    var difRes = Math.abs(usuario.resiliencia - p.resiliencia);
+    var difCon = Math.abs(usuario.confianca - p.confianca);
+    var difEst = Math.abs(usuario.estrategia - p.estrategia);
+    var difCtrl = Math.abs(usuario.controle_emocional - p.controle_emocional);
+    var difImp = Math.abs(usuario.impulsividade - p.impulsividade);
+
+    var mediaDif = (difRes + difCon + difEst + difCtrl + difImp) / 5;
+
+    var compFinal = 100 - mediaDif;
+    console.log(`${i + 1} compFinal: " ${compFinal}`);
+
+    if (compFinal > comp) {
+      comp = compFinal;
+      melhor = p;
+    }
   }
 
-  // 40–59 → Nobara
-  if (media < 60) {
-    return personagens[2];
-  }
-
-  // 60–74 → Megumi
-  if (media < 75) {
-    return personagens[1];
-  }
-
-  // 75–84 → Tanjiro
-  if (media < 85) {
-    return personagens[4];
-  }
-
-  // 85–94 → Maki
-  if (media < 95) {
-    return personagens[0];
-  }
-
-  // 95–100 → Shinobu
-  return personagens[3];
+  return melhor;
 }

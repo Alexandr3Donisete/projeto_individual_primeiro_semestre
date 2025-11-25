@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Perfil Psicológico Anime</title>
+
+  <link rel="stylesheet" href="./css/dashboard-anime.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+
+<body>
+  <div class="janela">
+    <!-- MENU LATERAL -->
+    <aside class="menu">
+      <h1 class="logo">ANIPSI</h1>
+
+      <div class="usuario">
+        <p>Olá, <span id="b_usuario">Usuário</span>!</p>
+      </div>
+
+      <nav class="links">
+        <a class="ativo">Dashboard</a>
+        <a href="teste-personalidade.html">Teste de Personalidade</a>
+        <a href="#" onclick="limparSessao()">Sair</a>
+      </nav>
+
+      <div class="img_personagem">
+        <img id="img_personagem" src="" alt="">
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL -->
+    <main class="conteudo">
+      <h1 class="titulo">Análise do Seu Perfil Psicológico</h1>
+
+      <!-- KPIS -->
+      <div class="kpis">
+        <div class="kpi">
+          <h3>Traço Dominante</h3>
+          <p id="kpiDominante">—</p>
+        </div>
+
+        <div class="kpi">
+          <h3>Compatibilidade Máxima</h3>
+          <p id="kpiCompatibilidade">—%</p>
+        </div>
+
+        <div class="kpi">
+          <h3>Média dos seus Status</h3>
+          <p id="kpiMedia">—</p>
+        </div>
+
+        <div class="kpi">
+          <h3>Top 3 Afinidades</h3>
+          <p id="kpiTop3">—</p>
+        </div>
+      </div>
+
+      <!-- GRÁFICOS -->
+      <section class="graficos">
+        <div class="grafico-box">
+          <h2>Perfil Psicológico (Radar)</h2>
+          <canvas id="graficoRadar"></canvas>
+        </div>
+
+        <div class="grafico-box">
+          <h2>Ranking de Compatibilidade com Personagens</h2>
+          <canvas id="graficoBarra"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+<img src="" alt="">
+
+</html>
+<script>
+
+  function limparSessao() {
+    sessionStorage.clear();
+    window.location = "../login.html";
+  }
+  var personagens = [
+    // Jujutsu Kaisen
+    {
+      nome: "Maki Zenin",
+      resiliencia: 95,
+      confianca: 85,
+      estrategia: 78,
+      controle_emocional: 88,
+      impulsividade: 40,
+      img: "../assets/imgs/img-maki.webp",
+    },
+    {
+      nome: "Megumi Fushiguro",
+      resiliencia: 80,
+      confianca: 60,
+      estrategia: 88,
+      controle_emocional: 70,
+      impulsividade: 45,
+      img: "../assets/imgs/img-megumi.webp",
+    },
+    {
+      nome: "Nobara Kugisaki",
+      resiliencia: 75,
+      confianca: 88,
+      estrategia: 65,
+      controle_emocional: 50,
+      impulsividade: 80,
+      img: "../assets/imgs/img-nobara.webp",
+    },
+
+    // Kimetsu no Yaiba
+    {
+      nome: "Shinobu Kochou",
+      resiliencia: 90,
+      confianca: 82,
+      estrategia: 95,
+      controle_emocional: 92,
+      impulsividade: 20,
+      img: "../assets/imgs/shinobu.webp",
+    },
+    {
+      nome: "Tanjiro Kamado",
+      resiliencia: 85,
+      confianca: 90,
+      estrategia: 70,
+      controle_emocional: 95,
+      impulsividade: 25,
+      img: "../assets/imgs/tanjiro.webp",
+    },
+    {
+      nome: "Zenitsu Agatsuma",
+      resiliencia: 60,
+      confianca: 40,
+      estrategia: 55,
+      controle_emocional: 20,
+      impulsividade: 95,
+      img: "../assets/imgs/zenitsu.webp",
+    },
+  ];
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  // fetch("/teste/listar").then(async function (res) {
+  //   if (res.ok) {
+  //     return var obj = await res.json();
+  //     console.log(obj);
+  //     montaRadar(obj);
+  //   } else {
+  //     console.log("Erro ao carregar gráfico.");
+  //   }
+  // });
+
+  fetch(`/teste/listar/${idUsuario}`).then(function (res) {
+    if (res.ok) {
+      res.json().then(function (response) {
+        console.log(`Dados recebidos: ${JSON.stringify(response)}`);
+        montaRadar(response);
+        dominante(response);
+        calcularTop3Compatibilidade(response)
+      });
+    } else {
+      console.log("Erro ao carregar gráfico.");
+    }
+  });
+
+  // KPIS ----------------------------------------
+
+  // Traço Dominante
+  function dominante(dados) {
+    var dominante = "Resiliência";
+    var maior = dados[0].resiliencia;
+
+    if (dados[0].confianca > maior) {
+      maior = dados[0].confianca;
+      dominante = "Confiança";
+    }
+
+    if (dados[0].estrategia > maior) {
+      maior = dados[0].estrategia;
+      dominante = "Estratégia";
+    }
+
+    if (dados[0].controle_emocional > maior) {
+      maior = dados[0].controle_emocional;
+      dominante = "Controle Emocional";
+    }
+
+    if (dados[0].impulsividade > maior) {
+      maior = dados[0].impulsividade;
+      dominante = "Impulsividade";
+    }
+
+    kpiDominante.innerHTML = dominante + " (" + maior + ")";
+
+    // Média de Balanceamento
+    var media = (dados[0].resiliencia + dados[0].confianca + dados[0].estrategia + dados[0].controle_emocional + dados[0].impulsividade) / 5;
+    document.getElementById("kpiMedia").innerHTML = media.toFixed(1);
+
+  }
+
+  function calcularTop3Compatibilidade(dadosUsuario) {
+
+    var usuario = {
+      resiliencia: dadosUsuario[0].resiliencia,
+      confianca: dadosUsuario[0].confianca,
+      estrategia: dadosUsuario[0].estrategia,
+      controle_emocional: dadosUsuario[0].controle_emocional,
+      impulsividade: dadosUsuario[0].impulsividade
+    };
+
+    var melhor1 = null;
+    var melhor2 = null;
+    var melhor3 = null;
+
+    var comp1 = 0;
+    var comp2 = 0;
+    var comp3 = 0;
+
+    for (var i = 0; i < personagens.length; i++) {
+      var p = personagens[i];
+
+      var difRes = Math.abs(usuario.resiliencia - p.resiliencia);
+      var difCon = Math.abs(usuario.confianca - p.confianca);
+      var difEst = Math.abs(usuario.estrategia - p.estrategia);
+      var difCtrl = Math.abs(usuario.controle_emocional - p.controle_emocional);
+      var difImp = Math.abs(usuario.impulsividade - p.impulsividade);
+
+      var mediaDif = (difRes + difCon + difEst + difCtrl + difImp) / 5;
+
+      var compFinal = 100 - mediaDif;
+
+      if (compFinal > comp1) {
+        comp3 = comp2;
+        melhor3 = melhor2;
+
+        comp2 = comp1;
+        melhor2 = melhor1;
+
+        comp1 = compFinal;
+        melhor1 = p;
+      }
+      else if (compFinal > comp2) {
+        comp3 = comp2;
+        melhor3 = melhor2;
+
+        comp2 = compFinal;
+        melhor2 = p;
+      }
+      else if (compFinal > comp3) {
+        comp3 = compFinal;
+        melhor3 = p;
+      }
+    }
+
+    // Atualiza HTML
+    kpiCompatibilidade.innerHTML =
+      melhor1.nome + " (" + Math.round(comp1) + "%)";
+
+    kpiTop3.innerHTML =
+      melhor1.nome + " (" + Math.round(comp1) + "%), " +
+      melhor2.nome + " (" + Math.round(comp2) + "%), " +
+      melhor3.nome + " (" + Math.round(comp3) + "%)";
+
+    img_personagem.src = `${melhor1.img}`;
+
+
+
+    // BARRA — ranking de personagens --------------
+    var ctxBarra = document.getElementById("graficoBarra");
+
+    new Chart(ctxBarra, {
+      type: "bar",
+      data: {
+        labels: [
+          melhor1.nome,
+          melhor2.nome,
+          melhor3.nome,
+        ],
+        datasets: [
+          {
+            label: "Compatibilidade (%)",
+            data: [comp1, comp2, comp3],
+            backgroundColor: "#b65df5",
+          },
+        ],
+      },
+    });
+
+  }
+
+  // GRÁFICO RADAR --------------------------------
+
+  function montaRadar(dados) {
+    var ctxRadar = document.getElementById("graficoRadar");
+
+    new Chart(ctxRadar, {
+      type: "radar",
+      data: {
+        labels: [
+          "Resiliência",
+          "Confiança",
+          "Estratégia",
+          "Controle Emocional",
+          "Impulsividade",
+        ],
+        datasets: [
+          {
+            label: "Meu Perfil",
+            data: [
+              dados[0].resiliencia,
+              dados[0].confianca,
+              dados[0].estrategia,
+              dados[0].controle_emocional,
+              dados[0].impulsividade,
+            ],
+            borderColor: "#b65df5",
+            backgroundColor: "rgba(182, 93, 245, 0.25)",
+            borderWidth: 2,
+            pointBackgroundColor: "#ffffff",
+            pointBorderColor: "#b65df5",
+            pointRadius: 3,
+          },
+        ],
+      },
+      plugins: [ChartDataLabels],
+      options: {
+        scales: {
+          r: {
+            min: 0,
+            max: 100,
+            ticks: {
+              display: false,
+            },
+            grid: {
+              color: "rgba(255,255,255,0.1)",
+              lineWidth: 2,
+            },
+            pointLabels: {
+              color: "#fff",
+              font: {
+                size: 16,
+                family: "Bangers",
+              },
+            },
+          },
+        },
+
+        // POSICIONA OS VALORES NAS PONTAS
+        plugins: {
+          datalabels: {
+            color: "#FFF",
+            font: {
+              size: 25,
+              family: "Bangers",
+            },
+            formatter: function (value) {
+              return value;
+            },
+            align: "start",
+            offset: 8,
+          },
+        },
+      },
+    });
+  }
+
+</script>

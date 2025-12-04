@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Bangers", system-ui;
+  background-image: url(../assets/imgs/background-maki-2.png);
+  background-size: cover;
+  background-position: center;
+  color: white;
+  overflow-x: hidden;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+/* HEADER */
+
+header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 90%;
+  padding: 15px 0px 15px 0px;
+  background-color: #00000067;
+  backdrop-filter: blur(3px);
+  margin: 5%;
+  border-radius: 25px;
+  justify-self: center;
+  margin-top: 10px;
+}
+
+header .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+}
+
+header a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+header a:hover {
+  text-decoration: none;
+  color: #800080;
+}
+
+.selected {
+  font-weight: 800;
+  color: #800080;
+}
+
+header .container .title {
+  font-size: 2rem;
+}
+
+.title {
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 50px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+/* TÍTULO */
+.test-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  padding: 20px;
+}
+
+.test-title h1 {
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px #000;
+  text-align: center;
+}
+
+/* ÁREA DO TESTE */
+.test-area {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.test-box {
+  width: 60%;
+  background: #0000008c;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  border: 2px solid #ffffff21;
+}
+
+.test-instruction {
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* PERGUNTA */
+.question-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.question-text {
+  font-size: 1.8rem;
+  text-align: left;
+}
+
+/* OPÇÕES */
+.option {
+  font-size: 2rem;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.option:hover {
+  background-color: #ffffff20;
+}
+
+/* BOTÃO */
+.btn-next {
+  width: 100%;
+  padding: 15px;
+  background-color: #b65df5;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+.btn-next:hover {
+  background-color: #510488;
+  transform: scale(1.03);
+}
